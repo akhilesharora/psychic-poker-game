@@ -47,10 +47,11 @@ class Pyscho
 
   def best_hand
     best_hand = 'highest-card'
+    begin
     (0..@cards_in_hand.length).each do |card_number_in_hand|
       @cards_in_hand.combination(card_number_in_hand).each do |combination|
         combination.each_with_index {|buf,buf_index| @simulatedHands[@simulatedHands.index(buf)] = @cards_in_deck[buf_index]}
-        @simulatedHands.sort! {|key,val| FACES.index(key[0]) <=> FACES.index(val[0]); }
+        @simulatedHands.sort! {|key,val| FACES.index(key[0]) <=> FACES.index(val[0]);}
         probable_best_hand = ('straight-flush' if is_straight? && is_flush?) ||
                  ('four-of-a-kind' if kinds? [4, 1]) ||
                  ('full-house' if kinds? [3, 2]) ||
@@ -64,6 +65,10 @@ class Pyscho
         return best_hand if best_hand.eql?('straight-flush')
         @simulatedHands = @cards_in_hand.dup
       end
+    end
+    rescue ArgumentError => e
+      puts 'Invalid set of cards'
+      # puts 'error '+ e
     end
     best_hand
   end
