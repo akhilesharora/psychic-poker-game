@@ -18,7 +18,6 @@ begin
     output_file.write "Hand: #{hand} Deck: #{deck} Best hand: #{best_hand}\n"
   end
 
-  [input_file,output_file].each{|file| file.close}
   
   rescue ArgumentError
     puts "#{where} file not found."
@@ -29,3 +28,5 @@ begin
   rescue Exception => e
   	puts "Something bad happened"
 end
+
+[input_file,output_file].each{|file| file.close}
