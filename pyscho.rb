@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-require 'pry'
+# require 'pry'
 class Pyscho
   
   attr_reader :cards_in_hand, :cards_in_deck
