@@ -18,10 +18,14 @@ begin
     output_file.write "Hand: #{hand} Deck: #{deck} Best hand: #{best_hand}\n"
   end
 
+  [input_file,output_file].each{|file| file.close}
+  
   rescue ArgumentError
     puts "#{where} file not found."
   rescue TypeError
-    puts 'Issue with File Handling'
+    puts "Issue with File Handling"
   rescue NoMethodError
-    puts 'File not opened'
+    puts "File not opened"
+  rescue Exception => e
+  	puts "Something bad happened"
 end
