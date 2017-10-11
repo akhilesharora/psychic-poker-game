@@ -27,6 +27,8 @@ begin
     puts "File not opened"
   rescue Exception => e
   	puts "Something bad happened"
+ensure
+	[input_file,output_file].each{|file| file.close}
 end
 
-[input_file,output_file].each{|file| file.close}
+
